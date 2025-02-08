@@ -12,33 +12,33 @@ public class App {
      
     public static void main(String[] args) throws Exception {
         Game game = new Game();
-        // game.play();
+        game.play();
 
-        boolean running = false;
-        Scanner scan = new Scanner(System.in);
-        System.out.print("What is your name: ");
-        String name = scan.nextLine();
-        System.out.println("Hi " + name + "! Have fun playing minesweeper?");
-        //System.out.println("press 'I' to read the rules");
-        System.out.println("press 'P' to play");
-        System.out.println("press any to quit");
-        String option = scan.nextLine();
-        if(option.equals("p")) {
-            running = true;
-        }
-        while (running) {
-            Grid.drawGrid();
-            System.out.println("press 'Q' to quit");
-            System.out.print("Enter coordinates (left top as 2 3): ");
-            option = scan.nextLine();
-            System.out.println(option);
-            if(option.equals("q")) {
-                System.out.println("Thank you for playing, quitting game..");
-                running = false;
-            }
-        }
-        System.out.println("Good Bye, " + name);
-        scan.close();
+        // boolean running = false;
+        // Scanner scan = new Scanner(System.in);
+        // System.out.print("What is your name: ");
+        // String name = scan.nextLine();
+        // System.out.println("Hi " + name + "! Have fun playing minesweeper?");
+        // //System.out.println("press 'I' to read the rules");
+        // System.out.println("press 'P' to play");
+        // System.out.println("press any to quit");
+        // String option = scan.nextLine();
+        // if(option.equals("p")) {
+        //     running = true;
+        // }
+        // while (running) {
+        //     Grid.drawGrid();
+        //     System.out.println("press 'Q' to quit");
+        //     System.out.print("Enter coordinates (left top as 2 3): ");
+        //     option = scan.nextLine();
+        //     System.out.println(option);
+        //     if(option.equals("q")) {
+        //         System.out.println("Thank you for playing, quitting game..");
+        //         running = false;
+        //     }
+        // }
+        // System.out.println("Good Bye, " + name);
+        // scan.close();
     }
 }
 
