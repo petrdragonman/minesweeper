@@ -1,29 +1,36 @@
 public class Grid {
     static void drawGrid() {
-        int rows = 5; // Number of rows in the grid
-        int cols = 5; // Number of columns in the grid
+        // Define the size of the grid
+        int rows = 10;
+        int cols = 10;
 
-        // Loop through each row
-        for (int i = 0; i < rows; i++) {
-            // Print the top border of the grid
-            if (i == 0) {
-                for (int j = 0; j < cols; j++) {
-                    System.out.print("+---");
-                }
-                System.out.println("+");
-            }
+        // Print the column headers (A, B, C)
+        System.out.print("   ");
+        for (char a = 'A'; a < 'A' + cols; a++) {
+            System.out.print("  " + a + "  ");
+        }
+        System.out.println();
 
-            // Print the content of each cell
+        // Print the top border of the grid
+        System.out.print("  +");
+        for (int j = 0; j < cols; j++) {
+            System.out.print("----+");
+        }
+        System.out.println();
+        // Print the grid with row numbers and borders
+        for (int i = 1; i <= rows; i++) {
+            System.out.print(i + " |");
             for (int j = 0; j < cols; j++) {
-                System.out.print("|   "); // Empty cell content
+                System.out.print("    |"); // Empty cells
             }
-            System.out.println("|");
+            System.out.println();
 
-            // Print the bottom border of the row
+            // Print the horizontal divider after each row
+            System.out.print("  +");
             for (int j = 0; j < cols; j++) {
-                System.out.print("+---");
+                System.out.print("----+");
             }
-            System.out.println("+");
+            System.out.println();
         }
     }
 }

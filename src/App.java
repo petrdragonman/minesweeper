@@ -2,7 +2,17 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        boolean running = false;
+        Game game = new Game();
+        game.play();
+        //Grid.drawGrid();
+    }
+}
+
+
+
+
+/**
+ * boolean running = false;
         Scanner scan = new Scanner(System.in);
         System.out.print("What is your name: ");
         String name = scan.nextLine();
@@ -34,5 +44,4 @@ public class App {
         }
         System.out.println("GoodBye!");
         scan.close();
-    }
-}
+ */
