@@ -1,8 +1,8 @@
 public class Grid {
     static void drawGrid() {
         // Define the size of the grid
-        int rows = 10;
-        int cols = 10;
+        int rows = 3;
+        int cols = 3;
 
         // Print the column headers (A, B, C)
         System.out.print("   ");
