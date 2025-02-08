@@ -4,28 +4,31 @@ public class Grid {
         int rows = 3;
         int cols = 3;
 
-        // Print the column headers (A, B, C)
+        // Print the column headers
         System.out.print("   ");
-        for (char a = 'A'; a < 'A' + cols; a++) {
-            System.out.print("  " + a + "  ");
+        for (int j = 0; j < cols; j++) {
+            System.out.print("  "+ (j+1) +"  ");
         }
         System.out.println();
+        // for (char a = 'A'; a < 'A' + cols; a++) {
+        //     System.out.print("  " + a + "  ");
+        // }
+        // System.out.println();
 
-        // Print the top border of the grid
+        // top border of the grid
         System.out.print("  +");
         for (int j = 0; j < cols; j++) {
             System.out.print("----+");
         }
         System.out.println();
-        // Print the grid with row numbers and borders
+        // the grid
         for (int i = 1; i <= rows; i++) {
             System.out.print(i + " |");
             for (int j = 0; j < cols; j++) {
                 System.out.print("    |"); // Empty cells
             }
             System.out.println();
-
-            // Print the horizontal divider after each row
+            // horizontal divider after each row
             System.out.print("  +");
             for (int j = 0; j < cols; j++) {
                 System.out.print("----+");
