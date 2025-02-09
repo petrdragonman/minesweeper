@@ -23,16 +23,6 @@ public class Game {
         calculateNumbers();
         //displayBoard(mineBoard);
     }
-
-    // private void displayBoard(char[][] b) {
-    //     for (int i = 0; i < ROWS; i++) {
-    //         //System.out.println(b[i].length);
-    //         for (int y = 0; y < COLS; y++) {
-    //             System.out.print(b[i][y]);
-    //         }
-    //         System.out.println();
-    //     }
-    // }
     private void initializeBoards() {
         for (int i = 0; i < ROWS; i++) {  
             for (int j = 0; j < COLS; j++) {
@@ -53,7 +43,7 @@ public class Game {
             }
         }
     }
-    private void printBoard() {
+    private void displayBoard(char[][] board) {
         for (int i = 0; i < COLS; i++) {
             if(i == 0) {
                 System.out.print("  ");
@@ -64,7 +54,7 @@ public class Game {
         for (int i = 0; i < ROWS; i++) {
             System.out.print((i) + "  ");
             for (int j = 0; j < COLS; j++) {
-                System.out.print(visibleBoard[i][j] + "  ");
+                System.out.print(board[i][j] + "  "); // visibleBoard
             }
             System.out.println();
         }
@@ -81,9 +71,10 @@ public class Game {
         return true;
     }
     private void revealCell(int row, int col) {
-        System.out.println(row);
-        System.out.println(col);
+        //System.out.println(row);
+        //System.out.println(col);
         if (mineBoard[row][col] == MINE) {
+            displayBoard(mineBoard);
             gameOver = true;
             System.out.println("Game Over! You hit a mine!");
         } else {
@@ -116,21 +107,32 @@ public class Game {
         }
         return count;
     }
+    private void displayRules() {
+        System.out.println("======= RULES =========");
+        System.out.println("1. - To play please press P or p.");
+        System.out.println("2. - To enter coordinates please type two numbers 0-9 with a space between them.");
+        System.out.println("3. - Make sure to type in the right sequence for the coordinates Left space Top.");
+        System.out.println("4. - To exit before the game starts press Q or q");
+        System.out.println("=======================");
+    }
 
     public void play() {
         Scanner scan = new Scanner(System.in);
         System.out.print("What is your name: ");
         String name = scan.nextLine();
         System.out.println("Hi " + name + "! Have fun playing minesweeper?");
+        System.out.println("press 'I' to read the rules");
         System.out.println("press 'P' to play");
         System.out.println("press any to quit");
         String option = scan.nextLine().toLowerCase();
         if(option.equals("p")) {
             isPlaying = true;
         }
+        if(option.equals("i")) {
+            displayRules();
+        }
         while (!gameOver && isPlaying) {
-            printBoard();
-            //Grid.drawGrid();
+            displayBoard(visibleBoard);
             System.out.print("Enter coordinates (left top as 4 2): ");
             int row = scan.nextInt();
             int col = scan.nextInt();
