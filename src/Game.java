@@ -18,12 +18,11 @@ public class Game {
         visibleBoard = new char[ROWS][COLS];
         gameOver = false;
         isPlaying = false;
-        initializeBoards();
+        initializeAllBoards();
         placeMines();
-        calculateNumbers();
-        //displayBoard(mineBoard);
+        calculateDangerAproximity();
     }
-    private void initializeBoards() {
+    private void initializeAllBoards() {
         for (int i = 0; i < ROWS; i++) {  
             for (int j = 0; j < COLS; j++) {
                 mineBoard[i][j] = '0';
@@ -54,7 +53,7 @@ public class Game {
         for (int i = 0; i < ROWS; i++) {
             System.out.print((i) + "  ");
             for (int j = 0; j < COLS; j++) {
-                System.out.print(board[i][j] + "  "); // visibleBoard
+                System.out.print(board[i][j] + "  ");
             }
             System.out.println();
         }
@@ -71,12 +70,10 @@ public class Game {
         return true;
     }
     private void revealCell(int row, int col) {
-        //System.out.println(row);
-        //System.out.println(col);
         if (mineBoard[row][col] == MINE) {
             displayBoard(mineBoard);
             gameOver = true;
-            System.out.println("Game Over! You hit a mine!");
+            System.out.println("BOOM!");
         } else {
             
             visibleBoard[row][col] = mineBoard[row][col];
@@ -85,7 +82,7 @@ public class Game {
         }
     }
 
-    private void calculateNumbers() {
+    private void calculateDangerAproximity() {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
                 if (mineBoard[i][j] != '*') {
@@ -117,6 +114,68 @@ public class Game {
     }
 
     public void play() {
+        boolean isInfoLoop = false;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("What is your name: ");
+        String name = scan.nextLine();
+        System.out.println("Hi " + name + "! Have fun playing minesweeper?");
+        System.out.println("press 'I' to read the rules");
+        System.out.println("press 'P' to play");
+        System.out.println("press 'Q' to quit");
+        
+        String option = scan.nextLine().toLowerCase();
+        if(option.equals("p")) {
+            isPlaying = true;
+        }
+        if(option.equals("i")) {
+            isInfoLoop = true;
+            while(isInfoLoop) {
+                displayRules();
+                System.out.println("press 'P' to play");
+                System.out.println("press any to quit");
+                option = scan.nextLine().toLowerCase();
+                if(option.equals("p")) {
+                    isPlaying = true;
+                    isInfoLoop = false;
+                }
+                isInfoLoop = false;
+            }
+        }
+        while (!gameOver && isPlaying) {
+            displayBoard(visibleBoard);
+            System.out.print("Enter coordinates (left top as 4 2): ");
+            int row = -1;
+            int col = -1;
+            String bin = "";  // just for binning the invalid input
+            if(scan.hasNextInt()) {
+                row = scan.nextInt();
+            } else {
+                bin = scan.next();
+            }
+            if(scan.hasNextInt()) {
+                col = scan.nextInt();
+            } else {
+                bin = scan.next();
+            }
+            
+            if (row >= 0 && row < ROWS && col >= 0 && col < COLS) {
+                revealCell(row, col);
+                if (checkWin()) {
+                    System.out.println("Congratulations! You won!");
+                    gameOver = true;
+                }
+            } else {
+                System.out.println("Invalid input. Try again. Enter coordinates (left top as 4 2)");
+            }
+        }
+        scan.close();
+        System.out.println("Thank you for playing, " + name + " GoodBye.");
+    }
+}
+
+
+/*
+ * public void play() {
         Scanner scan = new Scanner(System.in);
         System.out.print("What is your name: ");
         String name = scan.nextLine();
@@ -149,4 +208,4 @@ public class Game {
         scan.close();
         System.out.println("Thank you for playing, " + name + " GoodBye.");
     }
-}
+ */
