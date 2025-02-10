@@ -2,9 +2,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private static final int ROWS = 5;
-    private static final int COLS = 5;
-    private static final int MINES = 5;
+    private static final int ROWS = 10;
+    private static final int COLS = 10;
+    private static final int MINES = 10;
     private static final char UNTOUCHED = '~';
     private static final char MINE = '*';
 
@@ -146,16 +146,15 @@ public class Game {
             System.out.print("Enter coordinates (left top as 4 2): ");
             int row = -1;
             int col = -1;
-            String bin = "";  // just for binning the invalid input
             if(scan.hasNextInt()) {
                 row = scan.nextInt();
             } else {
-                bin = scan.next();
+                scan.next(); // binning the invalid input
             }
             if(scan.hasNextInt()) {
                 col = scan.nextInt();
             } else {
-                bin = scan.next();
+                scan.next(); // binning the invalid input
             }
             
             if (row >= 0 && row < ROWS && col >= 0 && col < COLS) {
@@ -172,40 +171,3 @@ public class Game {
         System.out.println("Thank you for playing, " + name + " GoodBye.");
     }
 }
-
-
-/*
- * public void play() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("What is your name: ");
-        String name = scan.nextLine();
-        System.out.println("Hi " + name + "! Have fun playing minesweeper?");
-        System.out.println("press 'I' to read the rules");
-        System.out.println("press 'P' to play");
-        System.out.println("press any to quit");
-        String option = scan.nextLine().toLowerCase();
-        if(option.equals("p")) {
-            isPlaying = true;
-        }
-        if(option.equals("i")) {
-            displayRules();
-        }
-        while (!gameOver && isPlaying) {
-            displayBoard(visibleBoard);
-            System.out.print("Enter coordinates (left top as 4 2): ");
-            int row = scan.nextInt();
-            int col = scan.nextInt();
-            if (row >= 0 && row < ROWS && col >= 0 && col < COLS) {
-                revealCell(row, col);
-                if (checkWin()) {
-                    System.out.println("Congratulations! You won!");
-                    gameOver = true;
-                }
-            } else {
-                System.out.println("Invalid input. Try again. Enter coordinates (left top as 4 2)");
-            }
-        }
-        scan.close();
-        System.out.println("Thank you for playing, " + name + " GoodBye.");
-    }
- */
